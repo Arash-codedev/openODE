@@ -1,0 +1,120 @@
+
+<div class="tab-pane active" id="module-build">
+
+	<div>
+			<button id="build-button" class="glyphicon glyphicon-cog btn btn-primary" onclick="build_project(this)"></button>
+			<span id="build-status">???</span>
+	</div>
+
+	<div class="build-solver">
+		<h3>Solver settings </h3>
+		<div style="padding:10px">
+			<div>
+				<div><button onclick="edit_build_solver(this,false);" class="glyphicon glyphicon-edit btn btn-xs btn-primary"></button></div>
+				<div><span class="glyphicon glyphicon-hourglass"></span></div>
+				<div>Start/Stop:</div>
+				<div id="build-solver-start-stop">???</div>
+			</div>
+			<div>
+				<div><button onclick="edit_build_solver(this,false);" class="glyphicon glyphicon-edit btn btn-xs btn-primary"></button></div>
+				<div><span class="glyphicon glyphicon-time"></span></div>
+				<div>Step size:</div>
+				<div id="build-solver-step-size">???</div>
+			</div>
+			<div>
+				<div><button onclick="edit_build_solver(this,false);" class="glyphicon glyphicon-edit btn btn-xs btn-primary"></button></div>
+				<div><span class="glyphicon glyphicon-resize-horizontal"></span></div>
+				<div>Max/Min step:</div>
+				<div id="build-solver-min-max-step">????</div>
+			</div>
+			<div>
+				<div><button onclick="edit_build_solver(this,false);" class="glyphicon glyphicon-edit btn btn-xs btn-primary"></button></div>
+				<div><span class="glyphicon glyphicon-resize-small"></span></div>
+				<div>eps rel:</div>
+				<div id="build-solver-eps-rel">???</div>
+			</div>
+			<div>
+				<div><button onclick="edit_build_solver(this,false);" class="glyphicon glyphicon-edit btn btn-xs btn-primary"></button></div>
+				<div><span class="glyphicon glyphicon-resize-small"></span></div>
+				<div>eps abs:</div>
+				<div id="build-solver-eps-abs">???</div>
+			</div>
+			<div>
+				<div><button onclick="edit_build_solver(this,false);" class="glyphicon glyphicon-edit btn btn-xs btn-primary"></button></div>
+				<div><span class="glyphicon glyphicon-step-forward"></span></div>
+				<div>Step type:</div>
+				<div id="build-solver-step-type">???</div>
+			</div>
+			<div>
+				<div><button onclick="edit_build_solver(this,false);" class="glyphicon glyphicon-edit btn btn-xs btn-primary"></button></div>
+				<div><span class="glyphicon glyphicon-star"></span></div>
+				<div>ODE solver:</div>
+				<div id="build-solver-ode-solver">???</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="build-cmake">
+		<h3>CMake features 
+		</h3>
+		<div style="padding:10px">
+			<div>
+				<div style="padding-left: 40px;" id="cmake_features">CMake feature:
+					<select name="available_cmake_features"></select>
+					<button class="glyphicon glyphicon-plus btn btn-success" onclick="build_add_cmake_feature(this);"></button>
+				</div>
+				<div id="cmake_features_list" class="build-line-box"></div>
+				<!-- <div id="build_additional_source" class="build-line-box"></div> -->
+			</div>
+
+<!-- 			<div>
+				<div style="padding-left: 40px;">Find packages:
+					<input type="text" placeholder="eg. OpenGL">
+					<button class="glyphicon glyphicon-plus btn btn-success" onclick="build_add_find_package(this);"></button>
+				</div>
+				<div id="build_find_packages" class="build-compact-box"></div>
+			</div>
+			<div>
+				<div style="padding-left: 40px;">Add directories:
+					<input type="text" placeholder="eg. ${OPENGL_INCLUDE_DIRS}" size="30">
+					<button class="glyphicon glyphicon-plus btn btn-success" onclick="build_add_directory(this);"></button>
+				</div>
+				<div id="build_directories" class="build-compact-box"></div>
+			</div>
+			<div>
+				<div style="padding-left: 40px;">Target link libraries:
+					<input type="text" placeholder="eg. ${OPENGL_LIBRARIES}" size="25">
+					<button class="glyphicon glyphicon-plus btn btn-success" onclick="build_add_link_library(this);"></button>
+				</div>
+				<div id="build_link_library" class="build-compact-box"></div>
+			</div>
+			<div>
+				<div style="padding-left: 40px;">Quick libraries: 
+					<button type="button" class="btn btn-default build-cmake-quicklib" onclick="build_quick_lib('openGL')">openGL</button>
+					<button type="button" class="btn btn-default build-cmake-quicklib" onclick="build_quick_lib('GLUT')">GLUT</button>
+					<button type="button" class="btn btn-default build-cmake-quicklib" onclick="build_quick_lib('SDL2')">SDL2</button>
+					<button type="button" class="btn btn-default build-cmake-quicklib" onclick="build_quick_lib('ffmpeg')">ffmpeg</button>
+				</div>
+			</div>
+
+			<div style="margin-top: 40px">
+				<div style="padding-left: 40px;">Transfer libraries:
+					<input type="text" size="40" placeholder="eg. graphics/chaosgraph.cpp">
+					<button class="glyphicon glyphicon-plus btn btn-success" onclick="build_add_transfer_library(this);"></button>
+				</div>
+				<div id="build_transfer_library" class="build-line-box"></div>
+			</div>
+
+			<div style="margin-top: 40px">
+				<div style="padding-left: 40px;">Additional source:
+					<input type="text" size="40" placeholder="eg. my_source.cpp">
+					<button class="glyphicon glyphicon-plus btn btn-success" onclick="build_add_source(this);"></button>
+				</div>
+				<div id="build_additional_source" class="build-line-box"></div>
+			</div>
+ -->
+		</div>
+	</div>
+
+</div>
+

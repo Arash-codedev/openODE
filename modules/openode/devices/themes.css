@@ -1,0 +1,16 @@
+
+div.device-group{
+  margin: 3px 15px;
+  padding: 3px 15px;
+  border: solid 1px #eee;
+}
+
+div.device-notes{
+  margin: 5px 15px;
+  color: #777;
+  border: solid 1px;
+  border-radius: 5px;
+  border-color: #eee;
+  padding: 10px 20px;
+}
+

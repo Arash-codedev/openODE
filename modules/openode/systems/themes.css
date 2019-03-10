@@ -1,0 +1,11 @@
+
+div.system-group{
+  margin: 20px 3px 15px 3px;
+  padding: 3px 15px;
+  border: solid 1px #eee;
+}
+
+div.system-group.inactive{
+  color: #eee;
+}
+

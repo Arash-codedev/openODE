@@ -1,0 +1,34 @@
+{
+  "id": "ffmpeg",
+  "name": "FFMPEG",
+  "set": [
+  ],
+  "find_package": [
+  ],
+  "include_directories": [
+  ],
+  "transfer_libraries": [
+  ],
+  "add_executable": [
+  ],
+  "target_link_libraries": [
+	"avdevice",
+	"avfilter",
+	"avformat",
+	"avcodec",
+	"rt",
+	"dl",
+	"Xfixes",
+	"Xext",
+	"X11",
+	"asound",
+	"z",
+	"swresample",
+	"swscale",
+	"avutil",
+	"m",
+	"lzma",
+	"bz2",
+	"pthread"
+  ]
+}

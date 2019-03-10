@@ -1,0 +1,19 @@
+{
+  "id": "glut",
+  "name": "GLUT",
+  "set": [
+  ],
+  "find_package": [
+  	"GLUT"
+  ],
+  "include_directories": [
+  	"${GLUT_INCLUDE_DIRS}"
+  ],
+  "transfer_libraries": [
+  ],
+  "add_executable": [
+  ],
+  "target_link_libraries": [
+  	"${GLUT_LIBRARY}"
+  ]
+}

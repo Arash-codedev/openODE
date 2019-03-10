@@ -1,0 +1,15 @@
+{
+  "id": "fs17",
+  "name": "fs17",
+  "set": [
+  ],
+  "find_package": [
+  ],
+  "include_directories": [
+  ],
+  "add_executable": [
+  ],
+  "target_link_libraries": [
+  	"stdc++fs"
+  ]
+}

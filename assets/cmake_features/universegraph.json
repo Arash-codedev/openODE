@@ -1,0 +1,61 @@
+{
+  "id": "universegraph",
+  "name": "Universegraph",
+  "set": [
+    "CMAKE_MODULE_PATH \"/usr/share/SFML/cmake/Modules\" ${CMAKE_MODULE_PATH}"
+  ],
+  "find_package": [
+  	"OpenGL",
+  	"GLUT",
+    "SFML 2.3 REQUIRED graphics window system",
+    "SDL2"
+  ],
+  "include_directories": [
+  	"${OPENGL_INCLUDE_DIRS}",
+  	"${GLUT_INCLUDE_DIRS}",
+  	"${SFML_INCLUDE_DIR}",
+  	"${SDL2_INCLUDE_DIRS}"
+  ],
+  "transfer_libraries": [
+  "graphics/universegraph.cpp",
+  "graphics/universegraph.hpp",
+  "graphics/view3d.cpp",
+  "graphics/view3d.hpp",
+	"graphics/capture.cpp",
+	"graphics/capture.hpp",
+	"graphics/video_writer.cpp",
+	"graphics/video_writer.hpp",
+  "graphics/window.hpp",
+  "graphics/window.cpp",
+  "graphics/keyboard.hpp",
+  "graphics/keyboard.cpp",
+	"graphics/graphic_types.hpp"
+  ],
+  "add_executable": [
+  ],
+  "target_link_libraries": [
+	"avdevice",
+	"avfilter",
+	"avformat",
+	"avcodec",
+	"rt",
+	"dl",
+	"Xfixes",
+	"Xext",
+	"X11",
+	"asound",
+	"z",
+	"swresample",
+	"swscale",
+	"avutil",
+	"m",
+	"lzma",
+	"bz2",
+	"pthread",
+  	"${OPENGL_LIBRARIES}",
+  	"${GLUT_LIBRARY}",
+  	"${SFML_LIBRARIES} ${SFML_DEPENDENCIES}",
+  	"${SDL2_LIBRARIES}",
+  	"stdc++fs"
+  ]
+}

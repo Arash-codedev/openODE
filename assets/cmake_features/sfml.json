@@ -1,0 +1,20 @@
+{
+  "id": "sfml",
+  "name": "SFML",
+  "set": [
+    "CMAKE_MODULE_PATH \"/usr/share/SFML/cmake/Modules\" ${CMAKE_MODULE_PATH}"
+  ],
+  "find_package": [
+    "SFML 2.3 REQUIRED graphics window system"
+  ],
+  "include_directories": [
+  	"${SFML_INCLUDE_DIR}"
+  ],
+  "transfer_libraries": [
+  ],
+  "add_executable": [
+  ],
+  "target_link_libraries": [
+  	"${SFML_LIBRARIES} ${SFML_DEPENDENCIES}"
+  ]
+}

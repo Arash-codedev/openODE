@@ -1,0 +1,19 @@
+{
+  "id": "opengl",
+  "name": "openGL",
+  "set": [
+  ],
+  "find_package": [
+  	"OpenGL"
+  ],
+  "include_directories": [
+  	"${OPENGL_INCLUDE_DIRS}"
+  ],
+  "transfer_libraries": [
+  ],
+  "add_executable": [
+  ],
+  "target_link_libraries": [
+  	"${OPENGL_LIBRARIES}"
+  ]
+}

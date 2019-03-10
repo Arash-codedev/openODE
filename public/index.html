@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="icons/favicon.ico">
+
+	<title>Project Manager</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap theme -->
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/theme.css" rel="stylesheet">
+	<link href="css/modules.css" rel="stylesheet">
+
+	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<script src="assets/js/ie-emulation-modes-warning.js"></script>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+<!-- ****************************** -->
+<div id="myModals">
+<!-- ##MODALS## -->
+</div>
+<!-- ****************************** -->
+<div class="container" style="padding-bottom: 40px">
+
+	<div style="position: relative;margin-top: 20px;">
+		<h1 id="project-title" style="display:inline-block;margin-top: 5px">Project Manager</h1>
+		<span class="glyphicon glyphicon-floppy-saved btn-flat" title="save all projects" onclick="projects_save_all()" style="float:left;color:#64b675;margin-right:60px"></span>
+		<span class="glyphicon glyphicon-stop btn-flat" title="stop server" onclick="server_terminate(false)" style="float:right;color:#F4204d;margin-right:10px"></span>
+		<span class="glyphicon glyphicon-log-out btn-flat" title="logout" onclick="logout()" style="float:right;color:#F4204d;margin-right:60px"></span>
+		<span class="glyphicon glyphicon-floppy-saved btn-flat" title="save all projects and stop server" onclick="projects_save_all_and_terminate()" style="float:right;color:#F4204d;margin-right:10px"></span>
+	</div>
+
+</div>
+
+<div id="maintab" class="container"> 
+	<ul class="nav nav-pills">
+		<li id="project-list" class="active">
+			<a href="#projects" data-toggle="tab">Projects</a>
+		</li>
+		<li id="project-list" class="">
+			<a href="#accounts" data-toggle="tab">Accounts</a>
+		</li>
+	</ul>
+	<div class="tab-content clearfix">
+		<div class="tab-pane active" id="projects">
+			<div>
+				<button class="glyphicon glyphicon-refresh btn btn-success" onclick="projects_refresh_list();"></button>
+				<button class="glyphicon glyphicon-plus btn btn-success" onclick="create_project();"></button>
+				<div id="add-project-block" class="project-create" style="display: none;"></div>
+				<div id="project-container" style="margin:20px 10px;"></div>
+			</div>
+		</div>
+		<div class="tab-pane " id="accounts">
+			<div>
+				aaaaaaaaaaaa
+				<button class="glyphicon glyphicon-refresh btn btn-success" onclick="projects_refresh_list();"></button>
+
+				<button class="glyphicon glyphicon-plus btn btn-success" onclick="show_modal_create_account();"></button>
+
+				<div id="user-container" style="margin:20px 10px;"></div>
+			</div>
+		</div>
+	</div>    <!-- (tab-content) -->
+</div>    <!-- (container) -->
+
+
+<!-- ****************************** -->
+
+<div class="container theme-showcase" role="main">
+</div> <!-- /container -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/typeahead.bundle.js"></script>
+<!-- <script src="assets/js/docs.min.js"></script> -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/main-essential.js"></script>
+<script src="js/render.js"></script>
+<script>
+
+$(function() {
+	projects_refresh_list();
+	update_users();
+});
+
+function open_project(project_id)
+{
+	main.standard_post("/open_project",{
+		request: "open project",
+		project_id: project_id,
+				},
+		function(output)
+		{
+			projects_refresh_list();
+		}
+		);
+}
+
+function project_close(project_id,insist)
+{
+	main.standard_post("/project_close",{
+		request: "close project",
+		project_id: project_id,
+		insist: insist,
+				},
+		function(output)
+		{
+			if(output.data.is_closed)
+				projects_refresh_list();
+			else if(output.data.ask_for_save)
+			{
+				if(confirm('Closing the project without saving?'))
+				{
+					project_close(project_id,true);
+				}
+			}
+		}
+		);
+}
+
+function save_project(project_id)
+{
+	main.standard_post("/project_save",{
+		request: "save project",
+		project_id: project_id,
+				},
+		function(output)
+		{
+			projects_refresh_list();
+		}
+		);
+}
+
+function projects_refresh_list()
+{
+	main.standard_post("/update_project_list",{
+		request: "update project list",
+				},
+		function(output)
+		{
+			$('#project-container .project-item').attr("data-active","false");
+			update_project_in_list=function(project_meta,active_list,create_new)
+			{
+				var project_id=project_meta.id;
+				var is_active=!!active_list.find(function(element){return element == project_id;});
+				var container_selector='#project-container';
+				var main_class='project-item';
+				var activation_class=activation_class=(is_active?'active':'inactive');;
+
+				if(create_new)
+				{
+					var element=''+
+						'<div class="'+main_class+' '+activation_class+'" data-dirpath="'+project_meta.dirpath+'">'+
+						('<button class="glyphicon glyphicon-remove btn btn-warning btn-xs" title="close" onclick="project_close(\''+project_id+'\',false);"></button>')+
+						('<button class="glyphicon glyphicon-open-file btn btn-primary btn-xs" title="open" onclick="open_project(\''+project_id+'\');"></button>')+
+						('<button class="glyphicon glyphicon-floppy-save btn btn-success btn-xs" title="save" onclick="save_project(\''+project_id+'\');"></button>')+
+						'<span class="project-path"></span>'+
+						'<span></span>'+
+						'</div>';
+					$(container_selector).append(element);
+				}
+				var selector='#project-container .project-item[data-dirpath="'+project_meta.dirpath+'"]';
+				$(selector).attr("data-active","true");
+				$(selector).removeClass('active inactive');
+				$(selector).addClass(activation_class);
+
+				var path_html=!is_active?project_meta.dirpath:'<a href="/project/'+project_meta.data.id+'"'+(false?' target="_blank"':'')+'>'+project_meta.dirpath+'</a>';
+				$(selector+' span').first().html(path_html);
+				var is_modified_html=project_meta.status.modified?'<span style="color: #f93838"> *</span>':'';
+				$(selector+' span:nth-of-type(2)').html(is_modified_html);
+				$(selector+' .glyphicon-remove').prop('disabled',!is_active);
+				$(selector+' .glyphicon-open-file').prop('disabled',is_active);
+				$(selector+' .glyphicon-floppy-save').prop('disabled',!is_active);
+			}
+			var active_list=output.data.active;
+			if(output.data.meta.length==0)
+				$('#project-container').html('<div style="text-align:center">No project was found<div>');
+			output.data.meta.forEach(function(project_meta){
+				var selector='#project-container .project-item[data-dirpath="'+project_meta.dirpath+'"]';
+				var l=$(selector).length;
+				if(l==1)
+					update_project_in_list(project_meta,active_list,false);
+				else
+				{
+					if(l>0)
+						$(selector).remove();
+					update_project_in_list(project_meta,active_list,true);
+				}
+
+			});
+
+		}
+		);
+}
+
+function update_users()
+{
+	console.log('update_users A56416546985498');
+}
+
+function projects_save_all()
+{
+	main.standard_post("/projects_save_all",{
+		request: "save all projects",
+				},
+		function(output)
+		{
+			projects_refresh_list();
+		}
+		);
+}
+
+function projects_save_all_and_terminate()
+{
+	main.standard_post("/projects_save_all",{
+		request: "save all projects",
+			},
+		function(output)
+		{
+			main.standard_post("/projects_close_all",{
+			request: "close all projects",
+			insist: false,
+					},
+			function(output)
+			{
+				server_terminate(false);
+			}
+			);
+		}
+		);
+}
+
+function server_terminate(insist)
+{
+	main.standard_post("/stop_server",{
+		request: "stop server",
+		stop_server: true,
+		insist: insist,
+				},
+		function(output)
+		{
+			if(output.data.exit_confirmed)
+			{
+				$('body').html('<h1 style="margin-top:100px;" align="center">Goodbye!</h1>');
+			}
+			else if(!insist)
+			{
+				if(confirm('Some projects are open.\nAre you sure to stop the server?'))
+					server_terminate(true);
+			}
+			else
+				alert('Code reached here. A4657418987918');
+		}
+		);
+}
+
+function logout()
+{
+	main.standard_post("/any_pending_save",{
+		request: "check pendign saves",
+				},
+		function(output)
+		{
+			var push_logout=!output.data.pending;
+			if(!push_logout)
+				push_logout=confirm('Some projects have not been saved.\n Are you sure to logout?');
+			if(push_logout)
+				window.location.href = "/logout"
+		}
+		);
+}
+
+function meta_edit_element(element,onclick,html,title)
+{
+	$(element).html(
+		'<button class="glyphicon glyphicon-remove btn btn-warning btn-xs" title="cancel '+title+'" onclick="$(\''+element+'\').html(\'\');$(\''+element+'\').hide(200);projects_refresh_list();update_users();" style="margin-left: 15px;margin-right: 5px"></button>'+
+		'<button class="glyphicon glyphicon-ok btn btn-success btn-xs" title="apply '+title+'" onclick="'+onclick+'" style="margin-right: 20px;"></button>'+html
+	);
+}
+
+function create_project(submit=false)
+{
+	if(submit)
+	{
+		main.standard_post("/project_create",{
+			request: "create project",
+			id: $('#add-project-id').val(),
+			path: $('#add-project-path').val(),
+			title: $('#add-project-title').val(),
+					},
+			function(output)
+			{
+				$('#add-project-block').html('');
+				$('#add-project-block').hide(200);
+				projects_refresh_list();
+				update_users();
+			}
+			);
+	}
+	else
+	{
+		var html='<br><br>'+
+			'Project id: <input id="add-project-id" placeholder="eg. unique_1234" type="text"><br>'+
+			'Project path: <input id="add-project-path" placeholder="eg. folder1/my_project1" type="text"><br>'+
+			'Project title: <input id="add-project-title" placeholder="eg. Great Project" type="text"><br>'+
+			'';
+		meta_edit_element('#add-project-block','create_project(true)',html,'create a new project');
+		$('#add-project-block').show(200);
+	}
+}
+
+</script>
+</body>
+</html>

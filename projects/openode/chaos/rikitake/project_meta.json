@@ -1,0 +1,190 @@
+{
+  "id": "chaos_rikitake",
+  "title": "Rikitake System",
+  "access": [
+    106,
+    107
+  ],
+  "signature":"open_ode",
+  "dirpath": "chaos/rikitake",
+  "available_cmake_features": {
+    "chaosgraph": {
+      "id": "chaosgraph",
+      "name": "Chaosgraph",
+      "set": [
+        "CMAKE_MODULE_PATH \"/usr/share/SFML/cmake/Modules\" ${CMAKE_MODULE_PATH}"
+      ],
+      "find_package": [
+        "OpenGL",
+        "GLUT",
+        "SFML 2.3 REQUIRED graphics window system",
+        "SDL2"
+      ],
+      "include_directories": [
+        "${OPENGL_INCLUDE_DIRS}",
+        "${GLUT_INCLUDE_DIRS}",
+        "${SFML_INCLUDE_DIR}",
+        "${SDL2_INCLUDE_DIRS}"
+      ],
+      "transfer_libraries": [
+        "graphics/chaosgraph.cpp",
+        "graphics/chaosgraph.hpp",
+        "graphics/capture.cpp",
+        "graphics/capture.hpp",
+        "graphics/video_writer.cpp",
+        "graphics/video_writer.hpp",
+        "graphics/window.hpp",
+        "graphics/window.cpp",
+        "graphics/keyboard.hpp",
+        "graphics/keyboard.cpp",
+        "graphics/graphic_types.hpp"
+      ],
+      "add_executable": [],
+      "target_link_libraries": [
+        "avdevice",
+        "avfilter",
+        "avformat",
+        "avcodec",
+        "rt",
+        "dl",
+        "Xfixes",
+        "Xext",
+        "X11",
+        "asound",
+        "z",
+        "swresample",
+        "swscale",
+        "avutil",
+        "m",
+        "lzma",
+        "bz2",
+        "pthread",
+        "${OPENGL_LIBRARIES}",
+        "${GLUT_LIBRARY}",
+        "${SFML_LIBRARIES} ${SFML_DEPENDENCIES}",
+        "${SDL2_LIBRARIES}",
+        "stdc++fs"
+      ],
+      "path": "assets/cmake_features/chaosgraph.json"
+    },
+    "ffmpeg": {
+      "id": "ffmpeg",
+      "name": "FFMPEG",
+      "set": [],
+      "find_package": [],
+      "include_directories": [],
+      "transfer_libraries": [],
+      "add_executable": [],
+      "target_link_libraries": [
+        "avdevice",
+        "avfilter",
+        "avformat",
+        "avcodec",
+        "rt",
+        "dl",
+        "Xfixes",
+        "Xext",
+        "X11",
+        "asound",
+        "z",
+        "swresample",
+        "swscale",
+        "avutil",
+        "m",
+        "lzma",
+        "bz2",
+        "pthread"
+      ],
+      "path": "assets/cmake_features/ffmpeg.json"
+    },
+    "fs17": {
+      "id": "fs17",
+      "name": "fs17",
+      "set": [],
+      "find_package": [],
+      "include_directories": [],
+      "add_executable": [],
+      "target_link_libraries": [
+        "stdc++fs"
+      ],
+      "path": "assets/cmake_features/fs17.json"
+    },
+    "glut": {
+      "id": "glut",
+      "name": "GLUT",
+      "set": [],
+      "find_package": [
+        "GLUT"
+      ],
+      "include_directories": [
+        "${GLUT_INCLUDE_DIRS}"
+      ],
+      "transfer_libraries": [],
+      "add_executable": [],
+      "target_link_libraries": [
+        "${GLUT_LIBRARY}"
+      ],
+      "path": "assets/cmake_features/glut.json"
+    },
+    "opengl": {
+      "id": "opengl",
+      "name": "openGL",
+      "set": [],
+      "find_package": [
+        "OpenGL"
+      ],
+      "include_directories": [
+        "${OPENGL_INCLUDE_DIRS}"
+      ],
+      "transfer_libraries": [],
+      "add_executable": [],
+      "target_link_libraries": [
+        "${OPENGL_LIBRARIES}"
+      ],
+      "path": "assets/cmake_features/opengl.json"
+    },
+    "base": {
+      "id": "base",
+      "name": "base (default)",
+      "set": [
+        "Boost_USE_STATIC_LIBS OFF",
+        "Boost_USE_MULTITHREADED ON",
+        "Boost_USE_STATIC_RUNTIME OFF",
+        "BOOST_VERSION \"1.65.0\""
+      ],
+      "find_package": [
+        "Boost ${BOOST_VERSION} COMPONENTS filesystem regex system thread date_time wave"
+      ],
+      "include_directories": [
+        "SYSTEM ${Boost_INCLUDE_DIR}",
+        "${Boost_INCLUDE_DIRS}"
+      ],
+      "transfer_libraries": [],
+      "add_executable": [],
+      "target_link_libraries": [
+        "${Boost_LIBRARIES}",
+        "${CMAKE_THREAD_LIBS_INIT}"
+      ],
+      "path": "assets/cmake_features/openode_base.json"
+    },
+    "sfml": {
+      "id": "sfml",
+      "name": "SFML",
+      "set": [
+        "CMAKE_MODULE_PATH \"/usr/share/SFML/cmake/Modules\" ${CMAKE_MODULE_PATH}"
+      ],
+      "find_package": [
+        "SFML 2.3 REQUIRED graphics window system"
+      ],
+      "include_directories": [
+        "${SFML_INCLUDE_DIR}"
+      ],
+      "transfer_libraries": [],
+      "add_executable": [],
+      "target_link_libraries": [
+        "${SFML_LIBRARIES} ${SFML_DEPENDENCIES}"
+      ],
+      "path": "assets/cmake_features/sfml.json"
+    }
+  }
+}

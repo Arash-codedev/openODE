@@ -1,0 +1,7 @@
+{
+  "id": "galaxy_disk_single",
+  "title": "Single Disk Galaxy",
+  "access": [],
+  "dirpath": "universe/galaxy_disk_single",
+  "signature": "open_ode"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "chaos_arneodo",
+  "title": "Arneodo System",
+  "access": [
+    106,
+    107
+  ],
+  "dirpath": "chaos/arneodo",
+  "signature": "open_ode"
+}

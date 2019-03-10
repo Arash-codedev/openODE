@@ -1,0 +1,10 @@
+{
+  "id": "chaos_thomas",
+  "title": "Thomas System",
+  "access": [
+    106,
+    107
+  ],
+  "dirpath": "chaos/thomas",
+  "signature": "open_ode"
+}

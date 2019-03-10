@@ -1,0 +1,10 @@
+{
+  "id": "chaos_windmi",
+  "title": "WINDMI System",
+  "access": [
+    106,
+    107
+  ],
+  "dirpath": "chaos/windmi",
+  "signature": "open_ode"
+}

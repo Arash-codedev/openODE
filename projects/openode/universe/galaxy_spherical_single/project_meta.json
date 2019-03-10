@@ -1,0 +1,7 @@
+{
+  "id": "galaxy_spherical_single",
+  "title": "Single Spherical Galaxy",
+  "access": [],
+  "dirpath": "universe/galaxy_spherical_single",
+  "signature": "open_ode"
+}

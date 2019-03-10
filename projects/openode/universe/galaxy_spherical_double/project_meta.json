@@ -1,0 +1,7 @@
+{
+  "id": "galaxy_spherical_double",
+  "title": "Double Spherical Galaxy",
+  "access": [],
+  "dirpath": "universe/galaxy_spherical_double",
+  "signature": "open_ode"
+}

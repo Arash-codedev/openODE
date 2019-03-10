@@ -1,0 +1,10 @@
+{
+  "id": "chaos_burkeshaw",
+  "title": "Burke-Shaw System",
+  "access": [
+    106,
+    107
+  ],
+  "signature":"open_ode",
+  "dirpath": "chaos/burkeshaw"
+}

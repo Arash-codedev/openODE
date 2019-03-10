@@ -1,0 +1,104 @@
+{
+  "config": {
+    "groups": {
+      "id_cnf_grp_73134": {
+        "id": "id_cnf_grp_73134",
+        "name": "aaa",
+        "items": {
+          "id_cnf_itm_46761": {
+            "id": "id_cnf_itm_46761",
+            "type": "???",
+            "name": "ccc",
+            "length": 1,
+            "value": "?"
+          },
+          "id_cnf_itm_50581": {
+            "id": "id_cnf_itm_50581",
+            "type": "???",
+            "name": "vvv",
+            "length": 1,
+            "value": "?"
+          }
+        },
+        "dynamic": false
+      }
+    }
+  },
+  "structures": {
+    "structs": {
+      "id_strct_type_89626": {
+        "id": "id_strct_type_89626",
+        "name": "position",
+        "items": {
+          "id_strct_itm_25807": {
+            "id": "id_strct_itm_25807",
+            "type_group": "basic",
+            "type": "double",
+            "name": "x",
+            "length": "1",
+            "init_value": "0.1",
+            "state": true
+          },
+          "id_strct_itm_96145": {
+            "id": "id_strct_itm_96145",
+            "type_group": "basic",
+            "type": "double",
+            "name": "y",
+            "length": 1,
+            "init_value": "0.0",
+            "state": true
+          },
+          "id_strct_itm_65340": {
+            "id": "id_strct_itm_65340",
+            "type_group": "basic",
+            "type": "double",
+            "name": "z",
+            "length": 1,
+            "init_value": "0.0",
+            "state": true
+          }
+        }
+      }
+    }
+  },
+  "build": {
+    "start_time": "0.0",
+    "stop_time": "500.0",
+    "step_size": "0.001",
+    "step_min": "0.0",
+    "step_max": "inf",
+    "eps_rel": "1.0e-8",
+    "eps_abs": "1.0e-6",
+    "step_type": "simulation_fix",
+    "ode_solver": "Dormand-Prince-45",
+    "cmake_features": [
+      "chaosgraph"
+    ]
+  },
+  "devices": {
+    "items": {}
+  },
+  "systems": {
+    "items": {
+      "id_sys_34551": {
+        "id": "id_sys_34551",
+        "name": "ChenSys",
+        "filebase": "chensys",
+        "controller_input_type": "",
+        "controller_state_type": "",
+        "controller_wire_type": "",
+        "controller_output_type": "",
+        "plant_input_type": "",
+        "plant_state_type": "id_strct_type_89626",
+        "plant_wire_type": "",
+        "plant_output_type": "id_strct_type_89626",
+        "has_controller": false,
+        "has_plant": true,
+        "controller_device_imports": [],
+        "controller_device_exports": [],
+        "plant_device_imports": [],
+        "plant_device_exports": []
+      }
+    }
+  }
+}

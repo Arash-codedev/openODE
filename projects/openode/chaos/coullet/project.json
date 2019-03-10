@@ -1,0 +1,84 @@
+{
+  "config": {
+    "groups": {}
+  },
+  "structures": {
+    "structs": {
+      "id_strct_type_16242": {
+        "id": "id_strct_type_16242",
+        "name": "position",
+        "items": {
+          "id_strct_itm_46817": {
+            "id": "id_strct_itm_46817",
+            "type_group": "basic",
+            "type": "double",
+            "name": "x",
+            "length": "1",
+            "init_value": "1.0",
+            "state": true
+          },
+          "id_strct_itm_94900": {
+            "id": "id_strct_itm_94900",
+            "type_group": "basic",
+            "type": "double",
+            "name": "y",
+            "length": "1",
+            "init_value": "0.0",
+            "state": true
+          },
+          "id_strct_itm_96120": {
+            "id": "id_strct_itm_96120",
+            "type_group": "basic",
+            "type": "double",
+            "name": "z",
+            "length": "1",
+            "init_value": "0.0",
+            "state": true
+          }
+        }
+      }
+    }
+  },
+  "build": {
+    "start_time": "0.0",
+    "stop_time": "15000.0",
+    "step_size": "0.001",
+    "step_min": "0.0",
+    "step_max": "inf",
+    "eps_rel": "1.0e-12",
+    "eps_abs": "1.0e-10",
+    "step_type": "simulation_fix",
+    "ode_solver": "Dormand-Prince-45",
+    "cmake_features": [
+      "chaosgraph"
+    ]
+  },
+  "systems": {
+    "items": {
+      "id_sys_66760": {
+        "id": "id_sys_66760",
+        "name": "CoulletSys",
+        "controller_input_type": "",
+        "controller_state_type": "",
+        "controller_wire_type": "",
+        "controller_output_type": "",
+        "plant_input_type": "",
+        "plant_state_type": "id_strct_type_16242",
+        "plant_wire_type": "",
+        "plant_output_type": "id_strct_type_16242",
+        "has_controller": false,
+        "has_plant": true,
+        "controller_device_imports": [],
+        "controller_device_exports": [],
+        "plant_device_imports": [],
+        "plant_device_exports": [],
+        "items": {},
+        "filebase": "coullet-sys",
+        "devices": {}
+      }
+    }
+  },
+  "devices": {
+    "items": {}
+  }
+}

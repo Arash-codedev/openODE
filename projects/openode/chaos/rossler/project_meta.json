@@ -1,0 +1,10 @@
+{
+  "id": "chaos_rossler",
+  "title": "Rossler System",
+  "access": [
+    106,
+    107
+  ],
+  "dirpath": "chaos/rossler",
+  "signature": "open_ode"
+}
